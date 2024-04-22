@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEditor.Scripting.Python;
 
 public class NaoControl : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class NaoControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MoveForwardBack();
+        MoveLeftRight();
+        MoveRotate();
         
     }
 
