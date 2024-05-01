@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Scripting.Python;
@@ -20,7 +21,7 @@ public class NaoControl : MonoBehaviour
     {
         MoveForwardBack();
         MoveLeftRight();
-        MoveRotate();
+        MoveRealNao();
         
     }
 
@@ -40,11 +41,11 @@ public class NaoControl : MonoBehaviour
         transform_nao.Translate(v, Space.Self);
     }
 
-    void MoveRotate()
+
+    static void MoveRealNao()
     {
-        Vector3 vec_rotate = Vector3.zero;
-        vec_rotate.y = Input.GetAxis("Rotate");
-        Vector3 v = new Vector3(0.0f, vec_rotate.y, 0.0f) * Time.deltaTime * 15.0f;
-        transform_nao.Rotate(v, Space.Self);
+        string scriptPath = Path.Combine(Application.dataPath, "NaoWalk.py");
+        PythonRunner.RunFile(scriptPath);
+
     }
 }
